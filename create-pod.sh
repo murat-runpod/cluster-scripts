@@ -9,7 +9,8 @@ docker run -d \
     --name pod \
     --network ext-net \
     --gpus all \
-    nvidia/cuda:12.4.0-base-ubuntu22.04
+    nvidia/cuda:12.4.0-base-ubuntu22.04 \
+    sleep infinity
 
 # Add all VXLAN networks
 for i in $(seq 0 7); do
