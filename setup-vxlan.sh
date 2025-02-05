@@ -1,5 +1,5 @@
 #!/bin/bash
-# setup-vxlan.sh
+# setup-vxlan.sh for node 1 (10.0.X.44)
 
 # Clean up first
 ./cleanup-vxlan.sh
@@ -14,8 +14,10 @@ docker network create --driver bridge \
 for i in $(seq 0 7); do
    # Define interface and IPs
    iface="enp$((13 + i))s0np0"
-   local_ip=$(ip addr show $iface | grep -Po 'inet \K[\d.]+')
-   remote_ip="10.0.$((i + 1)).44"  # Change to .64 for server 2
+   local_ip=$(ip addr show $iface | grep -Po "inet \K10.0.$((i + 1))\.[0-9]+")
+   remote_ip1="10.0.$((i + 1)).64"  # Node 2
+   remote_ip2="10.0.$((i + 1)).48"  # Node 3
+   remote_ip3="10.0.$((i + 1)).58"  # Node 4
    vni=$((100 + i))
    dstport=$((4789 + i))
    
@@ -39,8 +41,10 @@ for i in $(seq 0 7); do
    sudo ip link set vxlan$i up
    sudo ip link set vxlan$i master vxlan-br$i
 
-   # Add FDB entry for this specific path
-   sudo bridge fdb append 00:00:00:00:00:00 dev vxlan$i dst $remote_ip
+   # Add FDB entries for all remote nodes
+   sudo bridge fdb append 00:00:00:00:00:00 dev vxlan$i dst $remote_ip1
+   sudo bridge fdb append 00:00:00:00:00:00 dev vxlan$i dst $remote_ip2
+   sudo bridge fdb append 00:00:00:00:00:00 dev vxlan$i dst $remote_ip3
 done
 
 echo "Setup complete. Created networks:"
