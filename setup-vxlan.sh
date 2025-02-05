@@ -25,8 +25,8 @@ for i in $(seq 0 7); do
     # Create VXLAN interface bound to specific NIC
     sudo ip link add vxlan$i type vxlan \
         id $((100 + i)) \
-        dstport 4789 \
-        dev $iface \
+        dstport $((4789 + i)) \ 
+        dev $iface \ 
         local $(ip addr show $iface | grep -Po 'inet \K[\d.]+') \
         nolearning
 
