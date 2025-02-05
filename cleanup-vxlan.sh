@@ -10,12 +10,10 @@ for net in $(docker network ls --filter name=vxlan --format "{{.Name}}"); do
 done
 docker network rm ext-net 2>/dev/null
 
-# Remove all VXLAN interfaces
+# Remove all VXLAN interfaces and bridges
 for i in $(seq 0 7); do
     sudo ip link del vxlan$i 2>/dev/null
-    sudo ip link del vxlan-br$i 2>/dev/null
 done
-sudo ip link del ext-br 2>/dev/null
 
 # Show status
 echo "Remaining interfaces:"

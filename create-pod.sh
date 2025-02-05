@@ -12,7 +12,7 @@ docker run -d \
     nvidia/cuda:12.4.0-devel-ubuntu22.04 \
     sleep infinity
 
-# Add all VXLAN networks
+# Add all VXLAN networks with specific IPs
 for i in $(seq 0 7); do
     docker network connect \
         --ip 172.18.$((i+1)).10 \
