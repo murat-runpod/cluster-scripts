@@ -1,0 +1,3 @@
+for i in {0..7} ; do
+	docker network rm macvlan-net-${i};
+done;
