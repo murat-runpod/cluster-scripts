@@ -1,4 +1,5 @@
 #!/bin/bash
 for i in {0..7} ; do
+	docker network disconnect ipvlan-net-${i} safe_runpod_node;
 	docker network rm ipvlan-net-${i};
 done;

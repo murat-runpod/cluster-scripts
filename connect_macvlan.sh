@@ -7,5 +7,5 @@ fi
 LAST_OCTET=$1
 
 for i in {0..7} ; do
-	docker network connect --ip 10.66.${i}.${LAST_OCTET} macvlan-net-${i} pod;
+	docker network connect --ip 10.66.${i}.${LAST_OCTET} macvlan-net-${i} safe_runpod_node;
 done;
