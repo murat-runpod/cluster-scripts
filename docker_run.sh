@@ -1,7 +1,7 @@
 #!/bin/bash
 docker run -d \
 	--name pod \
-	--network=bridge \	# default bridge for external connectivity 
+	--network=bridge \
 	--device=/dev/infiniband:/dev/infiniband \
 	-v /sys/class/infiniband:/sys/class/infiniband:ro \
 	--ulimit memlock=-1:-1 \

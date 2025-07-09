@@ -1,2 +1,2 @@
 #!/bin/bash
-docker rm pod -f
+docker rm safe_runpod_node -f
