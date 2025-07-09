@@ -1,6 +1,6 @@
 #!/bin/bash
 docker run -d \
-	--name pod \
+	--name safe_runpod_node \
 	--network=bridge \
 	--device=/dev/infiniband:/dev/infiniband \
 	-v /sys/class/infiniband:/sys/class/infiniband:ro \
