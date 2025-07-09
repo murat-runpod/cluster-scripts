@@ -1,8 +1,7 @@
+#!/bin/bash
 docker run -d \
 	--name pod \
-	--gpus all \
-	--network=mn-bridge \
-	--ip 10.65.0.2 \
+	--network=bridge \	# default bridge for external connectivity 
 	--device=/dev/infiniband:/dev/infiniband \
 	-v /sys/class/infiniband:/sys/class/infiniband:ro \
 	--ulimit memlock=-1:-1 \
