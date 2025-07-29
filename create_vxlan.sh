@@ -6,10 +6,17 @@ fi
 
 LOCAL=$1
 REMOTE=$2
-OCTET=$3
 
-ip link add vxlan100 type vxlan id 100 dstport 4789 local 10.0.6.${LOCAL} remote 10.0.6.${REMOTE} # dev enp13s0np0
-ip addr add 192.168.100.${OCTET}/24 dev vxlan100
-ip link set dev vxlan100 mtu 4200
-ip link set vxlan100 up
-ip addr show vxlan100
+SUBNETS=(6 7 5 8 1 2 3 4)
+
+for i in {0..7} ; do
+    LINK=${SUBNETS[$i]}
+    VNI=$((100 + i))
+    VXLAN_NAME="vxlan${i}"
+
+    ip link add ${VXLAN_NAME} type vxlan id ${VNI} dstport 4789 local 10.0.${LINK}.${LOCAL} remote 10.0.${LINK}.${REMOTE}
+    ip addr add 192.168.${i}.${LOCAL}/24 dev ${VXLAN_NAME}
+    ip link set dev ${VXLAN_NAME} mtu 4150
+    ip link set ${VXLAN_NAME} up
+    ip addr show ${VXLAN_NAME}
+done;
