@@ -18,5 +18,5 @@ for i in {0..7} ; do
     ip addr add 192.168.${i}.${LOCAL}/24 dev ${VXLAN_NAME}
     ip link set dev ${VXLAN_NAME} mtu 4150
     ip link set ${VXLAN_NAME} up
-    ip addr show ${VXLAN_NAME}
+    ip -c -4 addr show ${VXLAN_NAME}
 done;
