@@ -1,6 +1,6 @@
 #!/bin/bash
-if [ $# -lt 3 ]; then
-    echo "Usage: $0 <LOCAL> <REMOTE> <OCTET>"
+if [ $# -lt 2 ]; then
+    echo "Usage: $0 <LOCAL> <REMOTE>"
     exit 1
 fi
 
