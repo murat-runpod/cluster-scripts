@@ -1,10 +1,4 @@
 #!/bin/bash
-if [ $# -lt 1 ]; then
-    echo "Usage: $0 <LAST_OCTET>"
-    exit 1
-fi
-
-LOCAL=$1
 
 SUBNETS=(6 7 5 8 1 2 3 4)
 
