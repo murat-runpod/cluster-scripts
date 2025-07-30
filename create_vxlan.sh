@@ -15,5 +15,5 @@ for i in {0..7} ; do
 
     ip link add ${VXLAN_NAME} type vxlan id ${VNI} dstport 4789 dev enp$((13+i))s0np0
     ip link set ${VXLAN_NAME} up
-    ip -c -4 addr show ${VXLAN_NAME}
+    ip -c -br addr show ${VXLAN_NAME}
 done;
