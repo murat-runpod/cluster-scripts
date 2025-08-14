@@ -12,3 +12,4 @@ for i in {0..7} ; do
 	docker network create -d macvlan --subnet 10.${SUBNET}.${i}.0/24 --label "multi-node" -o parent=vxlan${i} macvlan-net-${i};
 	docker network connect --ip 10.${SUBNET}.${i}.${LAST_OCTET} macvlan-net-${i} safe_runpod_node;
 done;
+docker network ls --filter driver=macvlan
