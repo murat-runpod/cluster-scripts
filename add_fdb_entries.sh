@@ -1,5 +1,4 @@
-#!bin/bash
-
+#!/bin/bash
 
 if [ $# -lt 1 ]; then
     echo "Usage: $0 <TARGET_HOST_OCTET>"
